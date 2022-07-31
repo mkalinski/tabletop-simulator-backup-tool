@@ -6,7 +6,7 @@ import os
 import re
 import json
 import requests
-import urlparse
+import urllib.parse
 
 image_keys = [
     'TableURL',
@@ -34,7 +34,7 @@ image_urls = []
 model_urls = []
 
 def url_to_tts(url):
-    url_path = urlparse.urlparse(url).path
+    url_path = urllib.parse.urlparse(url).path
     url_ext = os.path.splitext(url_path)[1]
     return "".join([c for c in url if c.isalpha() or c.isdigit()]).rstrip() + url_ext
 
@@ -106,8 +106,8 @@ def download_file(url, path, replace):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Downloads Tabletop Simulator'\
-                                     ' workshop files.")
+    parser = argparse.ArgumentParser(description="Downloads Tabletop Simulator"
+                                     " workshop files.")
     parser.add_argument("json_input",
                         help="Path to one or more workshop files.",
                         nargs="+")
@@ -121,7 +121,7 @@ if __name__ == '__main__':
         try:
             parse_tts_custom_object(filename)
         except TypeError as e:
-            print e
+            print(e)
             continue
 
 
